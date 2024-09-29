@@ -104,13 +104,12 @@ jobs:
       with:
         ref: ${{ inputs.safe-checkout }}
     - name: Generate maven artifacts with bazel and install using maven
-      uses: protocolbuffers/protobuf-ci/bazel-docker@v3
+      uses: deannagarcia/protobuf-ci/bazel-docker@set-ex-test
       with:
         image: us-docker.pkg.dev/protobuf-build/containers/test/linux/java:6.4.0-11-27cf7b86212020d7e552bc13b1e084abb971da75
         credentials: ${{ secrets.GAR_SERVICE_ACCOUNT }}
         bazel-cache: java_linux/11
         bash: |
-          set -ex
           bazel build //java:release
           mvn install:install-file -Dfile=java/bom/pom.xml -DpomFile=java/bom/pom.xml
           mvn install:install-file -Dfile=java/pom.xml -DpomFile=java/pom.xml
