@@ -7863,6 +7863,15 @@ void DescriptorBuilder::ValidateOptions(const FileDescriptor* file,
   if (file->edition() == Edition::EDITION_PROTO3) {
     ValidateProto3(file, proto);
   }
+
+  if (file->edition() >= Edition::EDITION_2024) {
+    if (file->options().has_java_multiple_files()) {
+      AddError(file->name(), proto, DescriptorPool::ErrorCollector::OPTION_NAME,
+               "The file option java_multiple_files is not supported in "
+               "editions 2024 and above. Use "
+               "`features.(pb.java).nest_in_file_class` instead.");
+    }
+  }
 }
 
 void DescriptorBuilder::ValidateProto3(const FileDescriptor* file,
