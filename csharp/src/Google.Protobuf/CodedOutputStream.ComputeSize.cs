@@ -8,6 +8,7 @@
 #endregion
 
 using System;
+using System.Text;
 
 namespace Google.Protobuf
 {
@@ -109,8 +110,15 @@ namespace Google.Protobuf
         /// </summary>
         public static int ComputeStringSize(String value)
         {
-            int byteArraySize = WritingPrimitives.Utf8Encoding.GetByteCount(value);
-            return ComputeLengthSize(byteArraySize) + byteArraySize;
+            try
+            {
+                int byteArraySize = WritingPrimitives.Utf8Encoding.GetByteCount(value);
+                return ComputeLengthSize(byteArraySize) + byteArraySize;
+            }
+            catch (EncoderFallbackException e)
+            {
+                throw InvalidProtocolBufferException.InvalidUtf8(e);
+            }
         }
 
         /// <summary>
