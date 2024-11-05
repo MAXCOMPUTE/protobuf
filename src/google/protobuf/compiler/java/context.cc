@@ -41,48 +41,71 @@ bool EqualWithSuffix(absl::string_view name1, absl::string_view suffix,
   return name1 == name2;
 }
 
+bool IsRepeatedFieldsConflicting(const FieldDescriptor* field1,
+                                 absl::string_view name1,
+                                 const FieldDescriptor* field2,
+                                 absl::string_view name2, std::string* info) {
+  if (field1->is_repeated() && !field2->is_repeated()) {
+    if (EqualWithSuffix(name1, "Count", name2)) {
+      *info =
+          absl::StrCat("both repeated field \"", field1->name(),
+                       "\" and singular ", "field \"", field2->name(),
+                       "\" generate the method \"", "get", name1, "Count()\"");
+      return true;
+    }
+    if (EqualWithSuffix(name1, "List", name2)) {
+      *info =
+          absl::StrCat("both repeated field \"", field1->name(),
+                       "\" and singular ", "field \"", field2->name(),
+                       "\" generate the method \"", "get", name1, "List()\"");
+      return true;
+    }
+  }
+
+  return false;
+}
+
+bool IsEnumFieldsConflicting(const FieldDescriptor* field1,
+                             absl::string_view name1,
+                             const FieldDescriptor* field2,
+                             absl::string_view name2, std::string* info) {
+  if (field1->type() == FieldDescriptor::TYPE_ENUM &&
+      !field1->enum_type()->is_closed() &&
+      EqualWithSuffix(name1, "Value", name2)) {
+    *info = absl::StrCat(
+        "both enum field \"", field1->name(), "\" and regular ", "field \"",
+        field2->name(), "\" generate the method \"", "get", name1, "Value()\"");
+    return true;
+  }
+
+  return false;
+}
+
+// Field 1 and 2 will be called the other way around as well, so no need to
+// check both ways here
+bool IsConflictingOneWay(const FieldDescriptor* field1, absl::string_view name1,
+                         const FieldDescriptor* field2, absl::string_view name2,
+                         std::string* info) {
+  return IsRepeatedFieldsConflicting(field1, name1, field2, name2, info) ||
+         IsEnumFieldsConflicting(field1, name1, field2, name2, info);
+
+  // Well, there are obviously many more conflicting cases, but it probably
+  // doesn't worth the effort to exhaust all of them because they rarely
+  // happen and as we are continuing adding new methods/changing existing
+  // methods the number of different conflicting cases will keep growing.
+  // We can just add more cases here when they are found in the real world.
+}
+
 // Whether two fields have conflicting accessors (assuming name1 and name2
 // are different). name1 and name2 are field1 and field2's camel-case name
 // respectively.
 bool IsConflicting(const FieldDescriptor* field1, absl::string_view name1,
                    const FieldDescriptor* field2, absl::string_view name2,
                    std::string* info) {
-  if (field1->is_repeated()) {
-    if (field2->is_repeated()) {
-      // Both fields are repeated.
-      return false;
-    } else {
-      // field1 is repeated, and field2 is not.
-      if (EqualWithSuffix(name1, "Count", name2)) {
-        *info = absl::StrCat("both repeated field \"", field1->name(),
-                             "\" and singular ", "field \"", field2->name(),
-                             "\" generate the method \"", "get", name1,
-                             "Count()\"");
-        return true;
-      }
-      if (EqualWithSuffix(name1, "List", name2)) {
-        *info =
-            absl::StrCat("both repeated field \"", field1->name(),
-                         "\" and singular ", "field \"", field2->name(),
-                         "\" generate the method \"", "get", name1, "List()\"");
-        return true;
-      }
-      // Well, there are obviously many more conflicting cases, but it probably
-      // doesn't worth the effort to exhaust all of them because they rarely
-      // happen and as we are continuing adding new methods/changing existing
-      // methods the number of different conflicting cases will keep growing.
-      // We can just add more cases here when they are found in the real world.
-      return false;
-    }
-  } else {
-    if (field2->is_repeated()) {
-      return IsConflicting(field2, name2, field1, name1, info);
-    } else {
-      // None of the two fields are repeated.
-      return false;
-    }
-  }
+  return IsConflictingOneWay(field1, name1, field2, name2, info) ||
+         IsConflictingOneWay(field2, name2, field1, name1, info);
 }
+
 }  // namespace
 
 void Context::InitializeFieldGeneratorInfo(const FileDescriptor* file) {
