@@ -21,6 +21,8 @@
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
+#include "google/protobuf/v2/generated_message_table.h"
+#include "google/protobuf/v2/generated_message_table_impl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
 #include "google/protobuf/generated_message_reflection.h"
@@ -1064,6 +1066,12 @@ class PROTOBUF_EXPORT UninterpretedOption_NamePart final
       1, 2, 0,
       62, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  2, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1346,6 +1354,12 @@ class PROTOBUF_EXPORT SourceCodeInfo_Location final
       3, 5, 0,
       106, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  5, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1629,6 +1643,12 @@ class PROTOBUF_EXPORT GeneratedCodeInfo_Annotation final
       3, 5, 1,
       64, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  5, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1872,6 +1892,12 @@ class PROTOBUF_EXPORT FieldOptions_FeatureSupport final
       2, 4, 3,
       71, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  4, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2089,6 +2115,12 @@ class PROTOBUF_EXPORT FieldOptions_EditionDefault final
       1, 2, 1,
       57, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  2, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2651,6 +2683,12 @@ class PROTOBUF_EXPORT FeatureSet final
       3, 6, 6,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  6, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2913,6 +2951,12 @@ class PROTOBUF_EXPORT ExtensionRangeOptions_Declaration final
       3, 5, 0,
       71, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  5, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3125,6 +3169,12 @@ class PROTOBUF_EXPORT EnumDescriptorProto_EnumReservedRange final
       1, 2, 0,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  2, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3334,6 +3384,12 @@ class PROTOBUF_EXPORT DescriptorProto_ReservedRange final
       1, 2, 0,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  2, 0, 0, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -3633,6 +3689,12 @@ class PROTOBUF_EXPORT UninterpretedOption final
       3, 7, 1,
       75, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  7, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -4026,6 +4088,12 @@ class PROTOBUF_EXPORT SourceCodeInfo final
       0, 1, 1,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  1, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -4229,6 +4297,12 @@ class PROTOBUF_EXPORT GeneratedCodeInfo final
       0, 1, 1,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  1, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -4461,6 +4535,12 @@ class PROTOBUF_EXPORT FeatureSetDefaults_FeatureSetEditionDefault final
       2, 3, 3,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  3, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -4877,6 +4957,12 @@ class PROTOBUF_EXPORT ServiceOptions final
       2, 3, 2,
       0, 12>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  3, 0, 2, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -5282,6 +5368,12 @@ class PROTOBUF_EXPORT OneofOptions final
       2, 2, 2,
       0, 7>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  2, 0, 2, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -5730,6 +5822,12 @@ class PROTOBUF_EXPORT MethodOptions final
       3, 4, 3,
       0, 12>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  4, 0, 2, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -6196,6 +6294,12 @@ class PROTOBUF_EXPORT MessageOptions final
       3, 7, 2,
       0, 7>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  7, 0, 2, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -6913,6 +7017,12 @@ class PROTOBUF_EXPORT FileOptions final
       5, 21, 3,
       202, 12>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  21, 0, 2, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -7587,6 +7697,12 @@ class PROTOBUF_EXPORT FieldOptions final
       4, 14, 8,
       0, 7>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  14, 0, 4, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -7833,6 +7949,12 @@ class PROTOBUF_EXPORT FeatureSetDefaults final
       1, 3, 3,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  3, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -8287,6 +8409,12 @@ class PROTOBUF_EXPORT ExtensionRangeOptions final
       3, 4, 4,
       0, 12>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  4, 0, 3, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -8733,6 +8861,12 @@ class PROTOBUF_EXPORT EnumValueOptions final
       3, 5, 3,
       0, 7>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  5, 0, 3, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -9176,6 +9310,12 @@ class PROTOBUF_EXPORT EnumOptions final
       3, 5, 2,
       0, 7>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  5, 0, 2, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -9404,6 +9544,12 @@ class PROTOBUF_EXPORT OneofDescriptorProto final
       1, 2, 1,
       49, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  2, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -9688,6 +9834,12 @@ class PROTOBUF_EXPORT MethodDescriptorProto final
       3, 6, 1,
       71, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  6, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -10103,6 +10255,12 @@ class PROTOBUF_EXPORT FieldDescriptorProto final
       4, 11, 3,
       96, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  11, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -10348,6 +10506,12 @@ class PROTOBUF_EXPORT EnumValueDescriptorProto final
       2, 3, 1,
       53, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  3, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -10579,6 +10743,12 @@ class PROTOBUF_EXPORT DescriptorProto_ExtensionRange final
       2, 3, 1,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  3, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -10822,6 +10992,12 @@ class PROTOBUF_EXPORT ServiceDescriptorProto final
       2, 3, 2,
       51, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  3, 0, 2, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -11107,6 +11283,12 @@ class PROTOBUF_EXPORT EnumDescriptorProto final
       3, 5, 3,
       61, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  5, 0, 3, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -11485,6 +11667,12 @@ class PROTOBUF_EXPORT DescriptorProto final
       4, 10, 8,
       65, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  10, 0, 7, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -11914,6 +12102,12 @@ class PROTOBUF_EXPORT FileDescriptorProto final
       4, 13, 7,
       79, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  13, 0, 6, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -12312,6 +12506,12 @@ class PROTOBUF_EXPORT FileDescriptorSet final
       0, 1, 1,
       0, 2>
       _table_;
+  #ifdef PROTOBUF_INTERNAL_V2_EXPERIMENT
+              friend class ::google::protobuf::internal::v2::TableDriven;
+              static const ::google::protobuf::internal::v2::MessageTable<
+                  1, 0, 1, false>
+                  _v2_table_;
+  #endif  // PROTOBUF_INTERNAL_V2_EXPERIMENT
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
