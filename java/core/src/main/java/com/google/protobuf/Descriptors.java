@@ -2189,7 +2189,12 @@ public final class Descriptors {
      * handling quirks.
      */
     public boolean isClosed() {
-      return getFeatures().getEnumType() == DescriptorProtos.FeatureSet.EnumType.CLOSED;
+      FeatureSet features = getFeatures();
+      if (features == null) {
+        throw new NullPointerException(
+            String.format("Features not yet loaded for %s (b/362326130)", getFullName()));
+      }
+      return features.getEnumType() == DescriptorProtos.FeatureSet.EnumType.CLOSED;
     }
 
     /** If this is a nested type, get the outer descriptor, otherwise null. */
