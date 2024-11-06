@@ -37,6 +37,12 @@ std::unique_ptr<AccessorGenerator> AccessorGeneratorFor(
         "unsupported repeated string type");
   }
 
+  if (ctx.is_cpp() &&
+     field.cpp_string_type() == FieldDescriptor::CppStringType::kCord) {
+   return std::make_unique<UnsupportedField>(
+       "unsupported singular cord type");
+  }
+
   if (field.is_map()) {
     return std::make_unique<Map>();
   }

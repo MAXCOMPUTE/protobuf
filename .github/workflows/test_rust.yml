@@ -29,10 +29,14 @@ jobs:
           bazel-cache: rust_linux
           bazel: >-
             test --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --@rules_rust//rust/settings:experimental_use_cc_common_link=True
-            //rust:all
-            //rust/test/cpp/interop/...
-            //rust/test/rust_proto_library_unit_test:rust_upb_aspect_test
+            //rust/...
             //src/google/protobuf/compiler/rust/...
+          exclude-targets:
+            -//rust/test/shared:accessors_cpp_test
+            -//rust/test/shared:accessors_map_cpp_test
+            -//rust/test/shared:accessors_proto3_cpp_test
+            -//rust/test/shared:accessors_repeated_cpp_test
+            -//rust/test/shared:bad_names_cpp_test
       - name: Run Cargo tests
         uses: protocolbuffers/protobuf-ci/bazel-docker@v3
         with:
