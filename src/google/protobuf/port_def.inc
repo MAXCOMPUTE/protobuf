@@ -148,6 +148,10 @@ static_assert(PROTOBUF_ABSL_MIN(20230125, 3),
 // Owner: mkruskal@
 #define PROTOBUF_FUTURE_RENAME_ADD_UNUSED_IMPORT 1
 
+// Deprecates MultipleJavaFiles in favor of NestInFileClass.
+// Owner: shaod@
+#define PROTOBUF_FUTURE_NESTED_IN_FILE_CLASS 1
+
 #endif
 
 #ifdef PROTOBUF_FUTURE_STRING_VIEW_RETURN_TYPE

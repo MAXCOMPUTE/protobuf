@@ -57,6 +57,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+
 /**
  * Unit test for generated messages and generated code. See also {@link MessageTest}, which tests
  * some generated message functionality.

@@ -1,0 +1,43 @@
+edition = "2024";
+
+package protobuf_unittest;
+
+import "google/protobuf/java_features.proto";
+
+// Test generic services that are produced by the protoc builtin generators.
+option cc_generic_services = true;
+option java_generic_services = true;
+
+enum NestedInFileClassEnum {
+  option features.(pb.java).nest_in_file_class = YES;
+
+  FOO_DEFAULT = 0;
+  FOO_VALUE = 1;
+}
+
+enum UnnestedEnum {
+  BAR_DEFAULT = 0;
+  BAR_VALUE = 1;
+}
+
+message NestedInFileClassMessage {
+  option features.(pb.java).nest_in_file_class = YES;
+
+  UnnestedEnum unnested_enum = 1;
+}
+
+message UnnestedMessage {
+  NestedInFileClassEnum nested_in_file_class_enum = 1;
+}
+
+service NestedInFileClassService {
+  option features.(pb.java).nest_in_file_class = YES;
+
+  // Test.
+  rpc Method(UnnestedMessage) returns (UnnestedMessage) {}
+}
+
+service UnnestedService {
+  // Test.
+  rpc Method(UnnestedMessage) returns (UnnestedMessage) {}
+}
