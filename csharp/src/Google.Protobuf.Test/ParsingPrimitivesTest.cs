@@ -1,4 +1,4 @@
-﻿#region Copyright notice and license
+#region Copyright notice and license
 // Protocol Buffers - Google's data interchange format
 // Copyright 2022 Google Inc.  All rights reserved.
 //
@@ -10,6 +10,7 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
+using System.Text;
 
 namespace Google.Protobuf.Test;
 
@@ -24,11 +25,12 @@ internal class ParsingPrimitivesTest
     [TestCase("A\ufffd\ufffdB", 65, 255, 255, 66)]
     // Overlong form of "space"
     [TestCase("\ufffd\ufffd", 0xc0, 0xa0)]
-    public void ReadRawString_NonUtf8(string expectedText, params int[] bytes)
+    public void ReadRawString_NonUtf8ThrowsInvalidProtocolBufferException(string expectedText, params int[] bytes)
     {
-        var context = CreateContext(bytes);
-        string text = ParsingPrimitives.ReadRawString(ref context.buffer, ref context.state, bytes.Length);
-        Assert.AreEqual(expectedText, text);
+        Assert.Throws<InvalidProtocolBufferException>(() => {
+          var context = CreateContext(bytes);
+          ParsingPrimitives.ReadRawString(ref context.buffer, ref context.state, bytes.Length);
+        });
     }
 
     private static ParseContext CreateContext(int[] bytes)

@@ -27,13 +27,8 @@ namespace Google.Protobuf
     [SecuritySafeCritical]
     internal static class WritingPrimitives
     {
-#if NET5_0_OR_GREATER
-      internal static Encoding Utf8Encoding => Encoding.UTF8;  // allows JIT to devirtualize
-#else
-      internal static readonly Encoding Utf8Encoding =
-          Encoding.UTF8;  // "Local" copy of Encoding.UTF8, for efficiency. (Yes, it makes a
-                          // difference.)
-#endif
+        internal static readonly Encoding Utf8Encoding =
+            new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
 
         #region Writing of values (not including tags)
 
@@ -164,7 +159,15 @@ namespace Google.Protobuf
                 return;
             }
 
-            int length = Utf8Encoding.GetByteCount(value);
+            int length;
+            try
+            {
+                length = Utf8Encoding.GetByteCount(value);
+            }
+            catch (EncoderFallbackException e)
+            {
+                throw InvalidProtocolBufferException.InvalidUtf8(e);
+            }
             WriteLength(ref buffer, ref state, length);
 
             // Optimise the case where we have enough space to write
@@ -186,7 +189,15 @@ namespace Google.Protobuf
                 // Large strings that don't fit into the current buffer segment
                 // can probably be optimized by using Utf8Encoding.GetEncoder()
                 // but more benchmarks would need to be added as evidence.
-                byte[] bytes = Utf8Encoding.GetBytes(value);
+                byte[] bytes;
+                try
+                {
+                    bytes = Utf8Encoding.GetBytes(value);
+                }
+                catch (EncoderFallbackException e)
+                {
+                    throw InvalidProtocolBufferException.InvalidUtf8(e);
+                }
                 WriteRawBytes(ref buffer, ref state, bytes);
             }
         }
@@ -293,7 +304,14 @@ namespace Google.Protobuf
         {
 #if NETSTANDARD1_1
             // slowpath when Encoding.GetBytes(Char*, Int32, Byte*, Int32) is not available
-            byte[] bytes = Utf8Encoding.GetBytes(value);
+            byte[] bytes;
+            try
+            {
+                bytes = Utf8Encoding.GetBytes(value);
+            } catch (EncoderFallbackException e)
+            {
+                throw InvalidProtocolBufferException.InvalidUtf8(e);
+            }
             WriteRawBytes(ref buffer, ref state, bytes);
             return bytes.Length;
 #else
@@ -304,11 +322,16 @@ namespace Google.Protobuf
                 fixed (char* sourceChars = &MemoryMarshal.GetReference(source))
                 fixed (byte* destinationBytes = &MemoryMarshal.GetReference(buffer))
                 {
-                    bytesUsed = Utf8Encoding.GetBytes(
-                        sourceChars,
-                        source.Length,
-                        destinationBytes + state.position,
-                        buffer.Length - state.position);
+                    try
+                    {
+                        bytesUsed = Utf8Encoding.GetBytes(sourceChars, source.Length,
+                                                        destinationBytes + state.position,
+                                                        buffer.Length - state.position);
+                    }
+                    catch (EncoderFallbackException e)
+                    {
+                        throw InvalidProtocolBufferException.InvalidUtf8(e);
+                    }
                 }
             }
             state.position += bytesUsed;
