@@ -1337,6 +1337,15 @@ class MessageTest(unittest.TestCase):
     self.assertIn('oneof_bytes', m)
     self.assertNotIn('oneof_string', m)
 
+  def MessageClassName(self, message_module):
+    m = message_module.TestAllTypes()
+    self.assertEqual('TestAllTypes', type(m).__name__)
+    self.assertEqual('TestAllTypes', m.__class__.__qualname__)
+
+    nested = message_module.TestAllTypes.NestedMessage()
+    self.assertEqual('TestAllTypes.NestedMessage', type(nested).__name__)
+    self.assertEqual('TestAllTypes.NestedMessage', nested.__class__.__qualname__)
+
 
 # Class to test proto2-only features (required, extensions, etc.)
 @testing_refleaks.TestCase
