@@ -15,6 +15,7 @@
 #include "absl/strings/ascii.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
+#include "google/protobuf/compiler/hpb/names.h"
 #include "google/protobuf/descriptor.h"
 
 namespace google::protobuf::hpb_generator {
@@ -136,6 +137,9 @@ std::string DefaultValue(const FieldDescriptor* field) {
       return absl::StrCat(field->default_value_int32());
     case FieldDescriptor::CPPTYPE_INT64:
       return absl::StrCat(field->default_value_int64());
+    case FieldDescriptor::CPPTYPE_MESSAGE:
+      return absl::StrCat("&", QualifiedClassName(field->message_type()),
+                          "::default_instance");
     default:
       // TODO: b/375460289 - implement rest of scalars + msg
       ABSL_LOG(WARNING) << "Unsupported default value type (in-progress): <"

@@ -72,9 +72,8 @@ struct UpbExtensionTrait<int64_t> {
 // not return an error if missing but the default msg
 template <typename T>
 struct UpbExtensionTrait<T> {
-  using DefaultType = int;
-  using ReturnType = int;
-  using DefaultFuncType = void (*)();
+  using DefaultType = Ptr<const T> (*)();
+  using ReturnType = Ptr<const T>;
 };
 
 // -------------------------------------------------------------------
@@ -109,7 +108,11 @@ class ExtensionIdentifier {
   const upb_MiniTableExtension* mini_table_ext_;
 
   typename UpbExtensionTrait<ExtensionType>::ReturnType default_value() const {
-    return default_val_;
+    if constexpr (IsHpbClass<ExtensionType>) {
+      return default_val_();
+    } else {
+      return default_val_;
+    }
   }
 
   typename UpbExtensionTrait<ExtensionType>::DefaultType default_val_;
@@ -283,7 +286,8 @@ absl::StatusOr<Ptr<const Extension>> GetExtension(
 
 template <typename T, typename Extendee, typename Extension,
           typename = hpb::internal::EnableIfHpbClassThatHasExtensions<T>>
-decltype(auto) GetExtension(
+absl::StatusOr<typename internal::UpbExtensionTrait<Extension>::ReturnType>
+GetExtension(
     const T* message,
     const hpb::internal::ExtensionIdentifier<Extendee, Extension>& id) {
   if constexpr (std::is_integral_v<Extension>) {
@@ -293,6 +297,12 @@ decltype(auto) GetExtension(
             hpb::interop::upb::GetMessage(message), id.mini_table_ext(),
             default_val);
     return res;
+  } else if constexpr (internal::IsHpbClass<Extension>) {
+    // TODO: b/375460289 - Although we can now fetch default msgs with
+    // hpb::internal::PrivateAccess::GetDefaultValue(id), this is a
+    // departure from GetOrPromoteExtension. Next step: vet non-promotional
+    // pathway. For now, we'll just use the old pathway.
+    return GetExtension(Ptr(message), id);
   } else {
     return GetExtension(Ptr(message), id);
   }
